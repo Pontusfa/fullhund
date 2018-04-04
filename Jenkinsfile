@@ -15,7 +15,7 @@ pipeline {
 
         stage('code coverage') {
                     steps {
-            jacoco(execPattern:'build/jacoco/*.exec',classPattern:'build/classes/java/main/**/*.class',sourcePattern:'src/main/java/**/*.java')
+            jacoco(execPattern:'build/jacoco/*.exec',classPattern:'build/classes/java/main',sourcePattern:'src/main/java')
 
         }
         }
