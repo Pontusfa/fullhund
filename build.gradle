@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id "jacoco"
 }
 
 mainClassName = 'lk.pontusfa.fullhund.App'
@@ -17,5 +18,18 @@ repositories {
 jar {
     manifest {
         attributes 'Main-Class': mainClassName
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.1"
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.enabled = true
+        csv.enabled = false
+        html.destination = "${buildDir}/reports/coverage"
     }
 }
