@@ -15,7 +15,9 @@ pipeline {
 
         stage('reports') {
             steps {
-                junit 'build/test-results/**/*.xml'
+                junit 'build/report/**/*.xml'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: 'Testeri', reportTitles: 'Testandet'])
+
             }
         }
     }
