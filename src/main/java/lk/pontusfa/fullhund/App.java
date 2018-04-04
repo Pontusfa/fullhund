@@ -6,6 +6,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        var test = "empty";
+        System.out.println(test + new App().getGreeting());
     }
 }

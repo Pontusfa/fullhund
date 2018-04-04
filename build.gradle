@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'App'
+mainClassName = 'lk.pontusfa.fullhund.App'
 
 dependencies {
     testCompile 'junit:junit:4.12'
@@ -12,4 +12,10 @@ dependencies {
 repositories {
     mavenCentral()
     jcenter()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
 }

@@ -12,5 +12,11 @@ pipeline {
                 sh './gradlew clean build test'
             }
         }
+
+        stage('reports') {
+            steps {
+                junit 'build/test-results/*.xml'
+            }
+        }
     }
 }
