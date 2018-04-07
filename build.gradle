@@ -4,15 +4,19 @@ plugins {
     id "jacoco"
 }
 
+group = 'lk.pontusfa.fullhund'
+version = '1.0-SNAPSHOT'
 mainClassName = 'lk.pontusfa.fullhund.App'
 
+sourceCompatibility = 1.10
+targetCompatibility = 1.10
+
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 jar {
@@ -22,14 +26,19 @@ jar {
 }
 
 jacoco {
-    toolVersion = "0.8.1"
+    toolVersion '0.8.1'
 }
 
-jacocoTestReport {
-    group = "Reporting"
-    reports {
-        xml.enabled = true
-        csv.enabled = false
-        html.destination = "${buildDir}/reports/coverage"
+javadoc {
+    options.addBooleanOption('html5', true)
+}
+
+distributions {
+    main {
+        contents {
+            from(javadoc) {
+                into "docs"
+            }
+        }
     }
 }

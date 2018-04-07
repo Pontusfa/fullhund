@@ -6,18 +6,17 @@ pipeline {
     }
 
     stages {
-        stage('test') {
+        stage('build') {
             steps {
                 sh 'chmod +x gradlew'
-                sh './gradlew clean build test jacocoTestReport'
+                sh './gradlew clean classes'
             }
         }
 
-        stage('code coverage') {
-                    steps {
-            jacoco(execPattern:'build/jacoco/*.exec',classPattern:'build/classes/java/main',sourcePattern:'src/main/java')
-
-        }
+        stage('test') {
+            steps {
+                sh './gradlew test jacocoTestReport'
+            }
         }
 
         stage('publish reports') {
@@ -27,13 +26,25 @@ pipeline {
                 publishHTML([
                     reportDir: 'build/reports/tests/test/',
                     reportFiles: 'index.html',
-                    reportName: 'Test report'])
+                    reportName: 'Unit Tests'])
 
-                     publishHTML([
-                                        reportDir: 'build/reports/coverage/',
-                                        reportFiles: 'index.html',
-                                        reportName: 'Cove coverage report'])
+                 publishHTML([
+                    reportDir: 'build/reports/jacoco/test/html/',
+                    reportFiles: 'index.html',
+                    reportName: 'Code Coverage'])
+
+                 publishHTML([
+                    reportDir: 'build/docs/javadoc/',
+                    reportFiles: 'index.html',
+                    reportName: 'Javadocs'])
             }
         }
+
+# jacoco doesn't work with java 10 at the moment
+#        stage('code coverage') {
+#            steps {
+#                jacoco(execPattern:'build/jacoco/test.exec',classPattern:'build/classes/java/main',sourcePattern:'src/main/java')
+#            }
+#        }
     }
 }
