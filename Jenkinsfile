@@ -40,11 +40,11 @@ pipeline {
             }
         }
 
-# jacoco doesn't work with java 10 at the moment
-#        stage('code coverage') {
-#            steps {
-#                jacoco(execPattern:'build/jacoco/test.exec',classPattern:'build/classes/java/main',sourcePattern:'src/main/java')
-#            }
-#        }
+// jacoco doesn't work with java 10 at the moment
+//        stage('code coverage') {
+//            steps {
+//                jacoco(execPattern:'build/jacoco/test.exec',classPattern:'build/classes/java/main',sourcePattern:'src/main/java')
+//            }
+//        }
     }
 }
