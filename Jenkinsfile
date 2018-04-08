@@ -42,7 +42,7 @@ pipeline {
                 jacoco(execPattern: '**/build/jacoco/**.exec',classPattern: '**/build/classes',sourcePattern: 'src/main/java')
 
                 withSonarQubeEnv('sonarqube') {
-                    sh './gradlew --info sonarqube -Dsonar.host.url=https://fullhund.pontusfa.lk/sonarqube -Dsonar.login=507fb9f6440be992e1b4e559a1c98ad2fcf0f430'
+                    sh './gradlew --info sonarqube'
                 }
             }
         }
