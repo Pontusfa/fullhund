@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('test') {
+        stage('unit tests') {
             steps {
                 sh './gradlew test'
             }
@@ -21,6 +21,18 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/**/*.xml'
+                }
+            }
+        }
+
+        stage('acceptance tests') {
+            steps {
+                sh './gradlew cucumber'
+            }
+
+            post {
+                always {
+                    cucumber fileIncludePattern: 'report.json', jsonReportDirectory: 'build/cucumber', sortingMethod: 'ALPHABETICAL'
                 }
             }
         }
