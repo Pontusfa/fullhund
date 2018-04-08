@@ -14,7 +14,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        var test = "empty";
+        String test = "empty";
         System.out.println(test + new App().getGreeting());
     }
 }

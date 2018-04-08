@@ -9,8 +9,8 @@ group = 'lk.pontusfa.fullhund'
 version = '1.0-SNAPSHOT'
 mainClassName = 'lk.pontusfa.fullhund.App'
 
-sourceCompatibility = 1.10
-targetCompatibility = 1.10
+sourceCompatibility = 9
+targetCompatibility = 9
 
 repositories {
     mavenCentral()

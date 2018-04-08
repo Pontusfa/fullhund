@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        jdk 'java10'
+        jdk 'java9'
     }
 
     stages {
@@ -39,6 +39,8 @@ pipeline {
 
         stage('code analysis') {
             steps {
+                jacoco(execPattern: '**/build/jacoco/**.exec',classPattern: '**/build/classes',sourcePattern: 'src/main/java')
+
                 withSonarQubeEnv('sonarqube') {
                     sh './gradlew --info sonarqube -Dsonar.host.url=https://fullhund.pontusfa.lk/sonarqube -Dsonar.login=507fb9f6440be992e1b4e559a1c98ad2fcf0f430'
                 }
