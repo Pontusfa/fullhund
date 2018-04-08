@@ -11,12 +11,13 @@ mainClassName = 'lk.pontusfa.fullhund.App'
 sourceCompatibility = 1.10
 targetCompatibility = 1.10
 
-dependencies {
-    testImplementation 'junit:junit:4.12'
-}
-
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
 
 jar {
@@ -41,4 +42,8 @@ distributions {
             }
         }
     }
+}
+
+test {
+    useJUnitPlatform()
 }
