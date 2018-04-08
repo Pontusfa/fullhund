@@ -29,11 +29,11 @@ pipeline {
                   reportDir: 'build/docs/javadoc/',
                   reportFiles: 'index.html',
                   reportTitles: 'Javadoc',
-                  reportName: 'Documentation'])
+                  reportName: 'Javadoc'])
               }
          }
 
-        stage('publish reports') {
+        stage('reports') {
             steps {
                 sh './gradlew jacocoTestReport'
 
@@ -42,14 +42,14 @@ pipeline {
                     reportDir: 'build/reports/jacoco/test/html/',
                     reportFiles: 'index.html',
                     reportTitles: 'Code Coverage',
-                    reportName: 'Documentation'])
+                    reportName: 'Code Coverage'])
 
                 publishHTML([
                     allowMissing: false, alwaysLinkToLastBuild: false,  keepAll: false,
                     reportDir: 'build/reports/tests/test/',
                     reportFiles: 'index.html',
                     reportTitles: 'Unit Tests',
-                    reportName: 'Documentation'])
+                    reportName: 'Unit Tests'])
             }
         }
     }
