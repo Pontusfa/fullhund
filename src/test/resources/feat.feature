@@ -1,5 +1,6 @@
-Feature: Gradle-Cucumber integration
+# language: no
 
+Egenskap: Gradle-Cucumber integration
     Scenario: Just a failing scenario
-        When I run a failing step1
-        When I run a failing step
+        Gitt I run a failing step1
+        Gitt I run a failing step

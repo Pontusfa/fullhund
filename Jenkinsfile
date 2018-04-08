@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('javadoc') {
+        stage('generate javadoc') {
             steps {
                 sh './gradlew javadoc'
 
@@ -50,7 +50,7 @@ pipeline {
               }
          }
 
-        stage('reports') {
+        stage('publish reports') {
             steps {
                 sh './gradlew jacocoTestReport'
 
@@ -70,4 +70,10 @@ pipeline {
             }
         }
     }
+
+     post {
+        always {
+
+        }
+     }
 }
