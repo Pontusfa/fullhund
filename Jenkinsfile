@@ -25,7 +25,7 @@ pipeline {
                 sh './gradlew javadoc'
 
                 publishHTML([
-                  allowMissing: false, alwaysLinkToLastBuild: false,  keepAll: false,
+                  allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
                   reportDir: 'build/docs/javadoc/',
                   reportFiles: 'index.html',
                   reportTitles: 'Javadoc',
@@ -38,14 +38,14 @@ pipeline {
                 sh './gradlew jacocoTestReport'
 
                 publishHTML([
-                    allowMissing: false, alwaysLinkToLastBuild: false,  keepAll: false,
+                    allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
                     reportDir: 'build/reports/jacoco/test/html/',
                     reportFiles: 'index.html',
                     reportTitles: 'Code Coverage',
                     reportName: 'Code Coverage'])
 
                 publishHTML([
-                    allowMissing: false, alwaysLinkToLastBuild: false,  keepAll: false,
+                    allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
                     reportDir: 'build/reports/tests/test/',
                     reportFiles: 'index.html',
                     reportTitles: 'Unit Tests',
