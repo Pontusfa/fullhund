@@ -37,6 +37,12 @@ pipeline {
             }
         }
 
+        stage('code analysis') {
+            withSonarQubeEnv('sonarqube') {
+                sh './gradlew --info sonarqube'
+            }
+        }
+
         stage('generate javadoc') {
             steps {
                 sh './gradlew javadoc'
