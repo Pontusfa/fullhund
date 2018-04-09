@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class MyStepdefs {
     @When("^I run a failing step$")
     public void iRunAFailingStep() {
-        // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
 
@@ -22,7 +21,7 @@ public class MyStepdefs {
     }
 
     @When("^apa$")
-    public void apa() throws Throwable {
+    public void apa() {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
