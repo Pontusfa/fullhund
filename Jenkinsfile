@@ -32,14 +32,18 @@ pipeline {
 
             post {
                 always {
-                    cucumber fileIncludePattern: 'report.json', jsonReportDirectory: 'build/cucumber', sortingMethod: 'ALPHABETICAL'
+                    cucumber(fileIncludePattern: 'report.json',
+                            jsonReportDirectory: 'build/cucumber',
+                            sortingMethod: 'ALPHABETICAL')
                 }
             }
         }
 
         stage('code analysis') {
             steps {
-                jacoco(execPattern: '**/build/jacoco/**.exec', classPattern: '**/build/classes', sourcePattern: 'src/main/java')
+                jacoco(execPattern: '**/build/jacoco/**.exec',
+                       classPattern: '**/build/classes',
+                       sourcePattern: 'src/main/java')
 
                 withSonarQubeEnv('sonarqube') {
                     sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
