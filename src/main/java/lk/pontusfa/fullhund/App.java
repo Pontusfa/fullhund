@@ -1,11 +1,14 @@
 package lk.pontusfa.fullhund;
 
+import org.apache.commons.lang3.math.Fraction;
+
 /**
  * apa
  *
  */
 public class App {
     public String getGreeting() {
+        System.out.println(Fraction.getFraction("1/3"));
         return "Hello world.";
     }
 
