@@ -36,9 +36,9 @@ pipeline {
                 }
             }
         }
-
+timeout(time: 15, unit: 'MINUTES') {
         stage('code analysis') {
-            timeout(time: 15, unit: 'MINUTES') {
+
             steps {
                 jacoco(execPattern: '**/build/jacoco/**.exec', classPattern: '**/build/classes', sourcePattern: 'src/main/java')
 
