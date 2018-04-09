@@ -36,8 +36,8 @@ pipeline {
                 }
             }
         }
-        stage('code analysis') {
 
+        stage('code analysis') {
             steps {
                 jacoco(execPattern: '**/build/jacoco/**.exec', classPattern: '**/build/classes', sourcePattern: 'src/main/java')
 
@@ -45,13 +45,16 @@ pipeline {
                     sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
                 }
 
-
-                    def qualityGate = waitForQualityGate()
-                    if (qualityGate.status != 'OK') {
-                      error 'Pipeline aborted due to quality gate failure: ${qualityGate.status}'
+                script {
+                    timeout(time: 15, unit: 'MINUTES') {
+                        def qualityGate = waitForQualityGate()
+                        if (qualityGate.status != 'OK') {
+                            error 'Pipeline aborted due to quality gate failure: ${qualityGate.status}'
+                        }
                     }
                 }
             }
+        }
 
         stage('generate javadoc') {
             steps {
