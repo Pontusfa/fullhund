@@ -77,6 +77,12 @@ pipeline {
 
         stage('publish reports') {
             steps {
+                step([$class: 'PitPublisher',
+                      mutationStatsFile:
+                      'build/reports/pitest/mutations.xml',
+                      minimumKillRatio: 50.00,
+                      killRatioMustImprove: false])
+
                 sh './gradlew jacocoTestReport'
 
                 publishHTML([
