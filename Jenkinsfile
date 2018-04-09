@@ -43,7 +43,9 @@ pipeline {
             steps {
                 jacoco(execPattern: '**/build/jacoco/**.exec',
                        classPattern: '**/build/classes',
-                       sourcePattern: 'src/main/java')
+                       sourcePattern: '**/src/main/java')
+
+                sh './gradlew pitest'
 
                 withSonarQubeEnv('sonarqube') {
                     sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
