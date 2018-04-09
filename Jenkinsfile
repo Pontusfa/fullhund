@@ -36,7 +36,6 @@ pipeline {
                 }
             }
         }
-timeout(time: 15, unit: 'MINUTES') {
         stage('code analysis') {
 
             steps {
@@ -53,7 +52,6 @@ timeout(time: 15, unit: 'MINUTES') {
                     }
                 }
             }
-        }
 
         stage('generate javadoc') {
             steps {
