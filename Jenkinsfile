@@ -44,6 +44,13 @@ pipeline {
                 withSonarQubeEnv('sonarqube') {
                     sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
                 }
+
+                timeout(time: 15, unit: 'MINUTES') {
+                    def qualityGate = waitForQualityGate()
+                    if (qualityGate.status != 'OK') {
+                      error "Pipeline aborted due to quality gate failure: ${qualityGate.status}"
+                    }
+                }
             }
         }
 
