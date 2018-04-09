@@ -8,6 +8,6 @@ class AppTest {
     @Test
     void testAppHasAGreeting() {
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting());
+        assertNotNull(classUnderTest.getGreeting(true));
     }
 }
