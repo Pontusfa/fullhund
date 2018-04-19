@@ -8,20 +8,10 @@ pipeline {
     stages {
         stage('clean') {
             steps {
-                dir('build/cucumber') {
-                    deleteDir()
-                }
-                dir('build/jacoco') {
-                                    deleteDir()
-                                }
-                dir('build/reports') {
-                                    deleteDir()
-                                }
-                                dir('build/test-reports') {
-                                                    deleteDir()
-                                                }
+                sh 'rm -rf build/{cucumber,jacoco,reports,test-reports}'
             }
         }
+
         stage('build') {
             steps {
                 sh 'chmod +x gradlew'
