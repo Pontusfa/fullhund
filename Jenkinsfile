@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    tools {
+    tools('java 9') {
         jdk 'java9'
     }
 
@@ -87,7 +87,7 @@ pipeline {
                 allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
                 reportDir: 'build/reports/',
                 reportFiles: 'jacoco/test/html/index.html,tests/test/index.html',
-                reportTitles: 'Code Coverage,Unit Tests',
+                reportTitles: 'Code Coverage1,Unit Tests1',
                 reportName: 'Tests'])
         }
     }
