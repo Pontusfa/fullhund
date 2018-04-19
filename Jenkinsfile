@@ -19,28 +19,13 @@ pipeline {
             }
         }
 
-        stage('tests') {
+        stage('test') {
             steps {
                 sh './gradlew test'
                 sh './gradlew cucumber'
             }
 
-             post {
-                    always {
-                        junit 'build/test-results/**/*.xml'
 
-                        publishHTML([
-                            allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
-                            reportDir: 'build/reports/tests/test/',
-                            reportFiles: 'index.html',
-                            reportTitles: 'Unit Tests',
-                            reportName: 'Unit Tests'])
-
-                        cucumber(fileIncludePattern: 'report.json',
-                            jsonReportDirectory: 'build/cucumber',
-                            sortingMethod: 'ALPHABETICAL')
-                    }
-             }
         }
 
         stage('code analysis') {
@@ -98,7 +83,11 @@ pipeline {
                 reportTitles: 'Code Coverage',
                 reportName: 'Code Coverage'])
 
-
+                        cucumber(fileIncludePattern: 'report.json',
+                            jsonReportDirectory: 'build/cucumber',
+                            sortingMethod: 'ALPHABETICAL')
+                    }
+             }
         }
     }
 }
