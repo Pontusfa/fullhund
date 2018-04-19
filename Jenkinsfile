@@ -51,15 +51,8 @@ pipeline {
                        classPattern: '**/build/classes',
                        sourcePattern: '**/src/main/java')
 
-                sh './gradlew pitest'
-
-                step([$class: 'PitPublisher',
-                          mutationStatsFile: 'build/reports/pitest/mutations.xml',
-                          minimumKillRatio: 50.00,
-                          killRatioMustImprove: false])
-
                 withSonarQubeEnv('sonarqube') {
-                    sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.pitest.mode=reuseReport'
+                    sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
                 }
 
                 script {
@@ -87,24 +80,15 @@ pipeline {
          }
     }
     post {
-                always{
+        always {
+            sh './gradlew jacocoTestReport'
 
-
-                    sh './gradlew jacocoTestReport'
-
-                    publishHTML([
-                        allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
-                        reportDir: 'build/reports/jacoco/test/html/',
-                        reportFiles: 'index.html',
-                        reportTitles: 'Code Coverage',
-                        reportName: 'Code Coverage'])
-
-                    publishHTML([
-                        allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
-                        reportDir: 'build/reports/tests/test/',
-                        reportFiles: 'index.html',
-                        reportTitles: 'Unit Tests',
-                        reportName: 'Unit Tests'])
-                }
-            }
+            publishHTML([
+                allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
+                reportDir: 'build/reports/',
+                reportFiles: 'jacoco/test/html/index.html,tests/test/index.html',
+                reportTitles: 'Code Coverage,Unit Tests',
+                reportName: 'Tests'])
+        }
+    }
 }
