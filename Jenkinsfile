@@ -74,32 +74,29 @@ pipeline {
                   reportName: 'Javadoc'])
               }
          }
-
-        stage('publish reports') {
-            steps {
-                step([$class: 'PitPublisher',
-                      mutationStatsFile:
-                      'build/reports/pitest/mutations.xml',
-                      minimumKillRatio: 50.00,
-                      killRatioMustImprove: false])
-
-                sh './gradlew jacocoTestReport'
-
-                publishHTML([
-                    allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
-                    reportDir: 'build/reports/jacoco/test/html/',
-                    reportFiles: 'index.html',
-                    reportTitles: 'Code Coverage',
-                    reportName: 'Code Coverage'])
-
-                publishHTML([
-                    allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
-                    reportDir: 'build/reports/tests/test/',
-                    reportFiles: 'index.html',
-                    reportTitles: 'Unit Tests',
-                    reportName: 'Unit Tests'])
-            }
-        }
     }
+    post {
+                always{
+                    step([$class: 'PitPublisher',
+                          mutationStatsFile: 'build/reports/pitest/mutations.xml',
+                          minimumKillRatio: 50.00,
+                          killRatioMustImprove: false])
 
+                    sh './gradlew jacocoTestReport'
+
+                    publishHTML([
+                        allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
+                        reportDir: 'build/reports/jacoco/test/html/',
+                        reportFiles: 'index.html',
+                        reportTitles: 'Code Coverage',
+                        reportName: 'Code Coverage'])
+
+                    publishHTML([
+                        allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
+                        reportDir: 'build/reports/tests/test/',
+                        reportFiles: 'index.html',
+                        reportTitles: 'Unit Tests',
+                        reportName: 'Unit Tests'])
+                }
+            }
 }
