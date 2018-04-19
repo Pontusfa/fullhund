@@ -14,7 +14,7 @@ public class MyStepdefs {
     @When("^I run a failing step1$")
     public void iRunAFailingSte1() {
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(true));
+        assertNotNull(classUnderTest.getGreeting1(true));
     }
 
     @When("^apa$")
