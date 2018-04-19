@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('clean') {
             steps {
-                sh 'rm -rf build/{cucumber,jacoco,reports,test-reports}'
+                sh 'rm -rf build/{cucumber,jacoco,reports,test-reports,docs}'
             }
         }
 

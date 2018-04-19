@@ -17,7 +17,7 @@ class AppTest {
     void testAppHasAGreeting2() {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting2(true));
-        assertNull(classUnderTest.getGreeting2(false));
+        assertNotNull(classUnderTest.getGreeting2(false));
     }
 
     @Test
