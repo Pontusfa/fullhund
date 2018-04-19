@@ -54,7 +54,7 @@ pipeline {
                 sh './gradlew pitest'
 
                 withSonarQubeEnv('sonarqube') {
-                    sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
+                    sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.pitest.mode=reuseReport'
                 }
 
                 script {
