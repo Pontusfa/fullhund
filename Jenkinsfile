@@ -24,8 +24,6 @@ pipeline {
                 sh './gradlew test'
                 sh './gradlew cucumber'
             }
-
-
         }
 
         stage('code analysis') {
@@ -83,11 +81,9 @@ pipeline {
                 reportTitles: 'Code Coverage',
                 reportName: 'Code Coverage'])
 
-                        cucumber(fileIncludePattern: 'report.json',
-                            jsonReportDirectory: 'build/cucumber',
-                            sortingMethod: 'ALPHABETICAL')
-
-             }
+            cucumber(fileIncludePattern: 'report.json',
+                jsonReportDirectory: 'build/cucumber',
+                sortingMethod: 'ALPHABETICAL')
         }
     }
 }
