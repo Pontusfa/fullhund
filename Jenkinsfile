@@ -86,7 +86,7 @@ pipeline {
                         cucumber(fileIncludePattern: 'report.json',
                             jsonReportDirectory: 'build/cucumber',
                             sortingMethod: 'ALPHABETICAL')
-                    }
+
              }
         }
     }
