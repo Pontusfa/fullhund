@@ -53,6 +53,11 @@ pipeline {
 
                 sh './gradlew pitest'
 
+                step([$class: 'PitPublisher',
+                          mutationStatsFile: 'build/reports/pitest/mutations.xml',
+                          minimumKillRatio: 50.00,
+                          killRatioMustImprove: false])
+
                 withSonarQubeEnv('sonarqube') {
                     sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.pitest.mode=reuseReport'
                 }
