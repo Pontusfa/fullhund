@@ -7,9 +7,30 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AppTest {
     @Test
-    void testAppHasAGreeting() {
+    void testAppHasAGreeting1() {
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(true));
-        assertNull(classUnderTest.getGreeting(false));
+        assertNotNull(classUnderTest.getGreeting1(true));
+        assertNull(classUnderTest.getGreeting1(false));
+    }
+
+    @Test
+    void testAppHasAGreeting2() {
+        App classUnderTest = new App();
+        assertNotNull(classUnderTest.getGreeting2(true));
+        assertNull(classUnderTest.getGreeting2(false));
+    }
+
+    @Test
+    void testAppHasAGreeting3() {
+        App classUnderTest = new App();
+        assertNotNull(classUnderTest.getGreeting3(true));
+        assertNull(classUnderTest.getGreeting3(false));
+    }
+
+    @Test
+    void testAppHasAGreeting4() {
+        App classUnderTest = new App();
+        assertNotNull(classUnderTest.getGreeting4(true));
+        assertNull(classUnderTest.getGreeting4(false));
     }
 }
