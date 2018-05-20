@@ -51,7 +51,5 @@ public class App {
         }
 
         System.out.println(Fraction.getFraction(1).doubleValue());
-
-        System.out.println(new Abb().getAsyncContext());
     }
 }
