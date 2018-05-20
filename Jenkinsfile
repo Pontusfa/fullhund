@@ -61,6 +61,7 @@ pipeline {
 
         stage('archive') {
             steps {
+                sh './gradlew assembleDist'
                 archiveArtifacts artifacts: 'build/distributions/Fullhund*', onlyIfSuccessful: true
             }
         }
