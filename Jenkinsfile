@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('clean') {
             steps {
-                sh 'rm -rf build/{cucumber,jacoco,reports,test-reports,docs}'
+                sh 'rm -rf build/{jacoco,reports,test-reports,docs}'
             }
         }
 
@@ -22,7 +22,6 @@ pipeline {
         stage('test') {
             steps {
                 sh './gradlew test || true'
-                sh './gradlew cucumber || true'
             }
         }
 
@@ -80,10 +79,6 @@ pipeline {
                 reportFiles: 'index.html',
                 reportTitles: 'Code Coverage',
                 reportName: 'Code Coverage'])
-
-            cucumber(fileIncludePattern: 'report.json',
-                jsonReportDirectory: 'build/cucumber',
-                sortingMethod: 'ALPHABETICAL')
         }
     }
 }
