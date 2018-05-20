@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('clean') {
-            steps {
-                sh 'rm -rf build/{jacoco,reports,test-reports,docs}'
-            }
-        }
-
         stage('build') {
             steps {
                 sh 'chmod +x gradlew'
