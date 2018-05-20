@@ -46,19 +46,6 @@ pipeline {
             }
         }
 
-        stage('generate javadoc') {
-            steps {
-                sh './gradlew javadoc'
-
-                publishHTML([
-                    allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
-                    reportDir: 'build/docs/javadoc/',
-                    reportFiles: 'index.html',
-                    reportTitles: 'Javadoc',
-                    reportName: 'Javadoc'])
-            }
-        }
-
         stage('archive') {
             steps {
                 sh './gradlew assembleDist'
@@ -68,6 +55,15 @@ pipeline {
     }
 
     post {
+        success {
+            publishHTML([
+                allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
+                reportDir: 'build/docs/javadoc/',
+                reportFiles: 'index.html',
+                reportTitles: 'Javadoc',
+                reportName: 'Javadoc'])
+        }
+
         always {
             junit 'build/test-results/**/*.xml'
 
