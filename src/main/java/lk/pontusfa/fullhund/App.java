@@ -15,15 +15,6 @@ public class App {
         }
     }
 
-    String getGreeting2(boolean a) {
-        if(a) {
-            return "Hello world.";
-        }
-        else {
-            return null;
-        }
-    }
-
     String getGreeting3(boolean a) {
         if(a) {
             return "Hello world.";
@@ -47,7 +38,7 @@ public class App {
             new App().getGreeting1(true);
         }
         else {
-            new App().getGreeting2(false);
+            new App().getGreeting3(false);
         }
 
         System.out.println(Fraction.getFraction(1).doubleValue());
