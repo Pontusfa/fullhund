@@ -56,8 +56,14 @@ pipeline {
                     reportFiles: 'index.html',
                     reportTitles: 'Javadoc',
                     reportName: 'Javadoc'])
-              }
-         }
+            }
+        }
+
+        stage('archive') {
+            steps {
+                archiveArtifacts artifacts: 'build/distributions/Fullhund*', onlyIfSuccessful: true
+            }
+        }
     }
 
     post {
