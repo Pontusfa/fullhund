@@ -5,7 +5,7 @@ package lk.pontusfa.fullhund;
  */
 public class App {
     String getGreeting1(boolean a) {
-        if(a) {
+        if (a) {
             return "Hello world.";
         }
         else {
@@ -14,7 +14,7 @@ public class App {
     }
 
     String getGreeting2(boolean a) {
-        if(a) {
+        if (a) {
             return "Hello world.";
         }
         else {
@@ -23,7 +23,7 @@ public class App {
     }
 
     String getGreeting3(boolean a) {
-        if(a) {
+        if (a) {
             return "Hello world.";
         }
         else {
@@ -32,7 +32,7 @@ public class App {
     }
 
     String getGreeting4(boolean a) {
-        if(a) {
+        if (a) {
             return "Hello world.";
         }
         else {
@@ -41,7 +41,49 @@ public class App {
     }
 
     public static void main(String[] args) {
-        if(args.length > 0) {
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
+            new App().getGreeting1(true);
+        }
+        else {
+            new App().getGreeting2(false);
+        }
+        if (args.length > 0) {
             new App().getGreeting1(true);
         }
         else {
