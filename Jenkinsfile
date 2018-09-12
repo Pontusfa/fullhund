@@ -16,6 +16,7 @@ pipeline {
         stage('test') {
             steps {
                 sh './gradlew test || true'
+                sh './gradlew pitest || true'
             }
         }
 
@@ -30,7 +31,7 @@ pipeline {
                 }
 
                 script {
-                    timeout(time: 15, unit: 'MINUTES') {
+                    timeout(time: 3, unit: 'MINUTES') {
                         def qualityGate = waitForQualityGate()
                         if (qualityGate.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qualityGate.status}"
