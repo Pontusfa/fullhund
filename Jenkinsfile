@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        jdk 'java9'
+        jdk 'java10'
     }
 
     stages {
@@ -16,7 +16,6 @@ pipeline {
         stage('test') {
             steps {
                 sh './gradlew test || true'
-                sh './gradlew pitest || true'
             }
         }
 
@@ -25,6 +24,8 @@ pipeline {
                 jacoco(execPattern: '**/build/jacoco/**.exec',
                     classPattern: '**/build/classes',
                     sourcePattern: '**/src/main/java')
+
+                sh './gradlew pitest || true'
 
                 withSonarQubeEnv('sonarqube') {
                     sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
@@ -77,6 +78,13 @@ pipeline {
                 reportFiles: 'index.html',
                 reportTitles: 'Code Coverage',
                 reportName: 'Code Coverage'])
+
+            publishHTML([
+                allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
+                reportDir: 'build/reports/pitest/html/',
+                reportFiles: 'index.html',
+                reportTitles: 'PITest',
+                reportName: 'PITest'])
         }
     }
 }

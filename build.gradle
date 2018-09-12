@@ -2,8 +2,7 @@ buildscript {
     configurations.maybeCreate("pitest")
 
     dependencies {
-        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.3.0'
-        pitest 'org.pitest:pitest-junit5-plugin:0.3'
+        pitest 'org.pitest:pitest-junit5-plugin:0.7'
     }
 }
 
@@ -21,8 +20,8 @@ group = 'lk.pontusfa.fullhund'
 version = '1.0-SNAPSHOT'
 mainClassName = 'lk.pontusfa.fullhund.App'
 
-sourceCompatibility = 9
-targetCompatibility = 9
+sourceCompatibility = 10
+targetCompatibility = 10
 
 repositories {
     mavenCentral()
@@ -44,6 +43,7 @@ pitest {
     testPlugin = 'junit5'
     timestampedReports = false
     outputFormats = ['XML', 'HTML']
+    pitestVersion = '1.4.2'
 }
 
 jacoco {
