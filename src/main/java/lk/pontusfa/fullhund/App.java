@@ -1,14 +1,12 @@
 package lk.pontusfa.fullhund;
 
-import org.apache.commons.lang3.math.Fraction;
-
 /**
  * apa
  */
 public class App {
     String getGreeting1(boolean a) {
         if(a) {
-            return "Hello world.";
+            return "Hello world1.";
         }
         else {
             return null;
@@ -17,7 +15,7 @@ public class App {
 
     String getGreeting3(boolean a) {
         if(a) {
-            return "Hello world.";
+            return "Hello world3.";
         }
         else {
             return null;
@@ -26,7 +24,7 @@ public class App {
 
     String getGreeting4(boolean a) {
         if(a) {
-            return "Hello world.";
+            return "Hello world4.";
         }
         else {
             return null;
@@ -40,7 +38,5 @@ public class App {
         else {
             new App().getGreeting3(false);
         }
-
-        System.out.println(Fraction.getFraction(1).doubleValue());
     }
 }
