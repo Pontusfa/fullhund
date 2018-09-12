@@ -32,11 +32,5 @@ public class App {
     }
 
     public static void main(String[] args) {
-        if(args.length > 0) {
-            new App().getGreeting1(true);
-        }
-        else {
-            new App().getGreeting3(false);
-        }
     }
 }
