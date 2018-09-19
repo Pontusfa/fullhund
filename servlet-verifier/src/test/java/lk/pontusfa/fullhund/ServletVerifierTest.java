@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class AppTest {
+class ServletVerifierTest {
     @Test
     void testAppHasAGreeting1() {
         App classUnderTest = new App();

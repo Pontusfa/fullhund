@@ -1,1 +1,3 @@
 rootProject.name = 'Fullhund'
+include 'servlet-verifier'
+include 'runner'

@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'chmod +x gradlew'
-                sh './gradlew clean classes'
+                sh './gradlew clean'
+                sh './gradlew classes'
             }
         }
 
         stage('test') {
             steps {
-                sh './gradlew test || true'
+                sh './gradlew test'
             }
         }
 
@@ -26,9 +26,10 @@ pipeline {
                     sourcePattern: '**/src/main/java')
 
                 sh './gradlew pitest || true'
+                sh './gradlew lint || true'
 
                 withSonarQubeEnv('sonarqube') {
-                    sh './gradlew --info sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
+                    sh './gradlew sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN'
                 }
 
                 script {
@@ -44,28 +45,33 @@ pipeline {
 
         stage('archive') {
             steps {
-                sh './gradlew assembleDist'
-                archiveArtifacts artifacts: 'build/distributions/Fullhund*', onlyIfSuccessful: true
+                sh './gradlew :runner:assembleDist'
+                archiveArtifacts artifacts: 'runner/build/distributions/Fullhund*', onlyIfSuccessful: true
             }
         }
+         stage('archive') {
+            steps {
+                //TODO
+            }
+         }
     }
 
     post {
         success {
             publishHTML([
                 allowMissing: false, alwaysLinkToLastBuild: true,  keepAll: false,
-                reportDir: 'build/docs/javadoc/',
+                reportDir: '**/build/docs/javadoc/',
                 reportFiles: 'index.html',
                 reportTitles: 'Javadoc',
                 reportName: 'Javadoc'])
         }
 
         always {
-            junit 'build/test-results/**/*.xml'
+            junit '**/build/test-results/**/*.xml'
 
             publishHTML([
                 allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
-                reportDir: 'build/reports/tests/test/',
+                reportDir: '**/build/reports/tests/test/',
                 reportFiles: 'index.html',
                 reportTitles: 'Unit Tests',
                 reportName: 'Unit Tests'])
@@ -74,14 +80,14 @@ pipeline {
 
             publishHTML([
                 allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
-                reportDir: 'build/reports/jacoco/test/html/',
+                reportDir: '**/build/reports/jacoco/test/html/',
                 reportFiles: 'index.html',
                 reportTitles: 'Code Coverage',
                 reportName: 'Code Coverage'])
 
             publishHTML([
                 allowMissing: true, alwaysLinkToLastBuild: true,  keepAll: false,
-                reportDir: 'build/reports/pitest/',
+                reportDir: '**/build/reports/pitest/',
                 reportFiles: 'index.html',
                 reportTitles: 'PITest',
                 reportName: 'PITest'])
